@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 mb-3">
+            <input type="text" class="form-control" placeholder="Enter the prompt" [(ngModel)]="prompt">
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*">
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Preview -->
+    <div class="row justify-content-center mt-5">
+        <div class="col-12">
+            <div class="form-group">
+                <img *ngIf="imageSrc" [src]="imageSrc" alt="Image Preview" class="w-75 d-block m-auto">
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-5">
+        <div class="col-12 text-center">
+            <button class="btn btn-success btn-lg" (click)="generateUxAi()">Generate UX</button>
+        </div>
+    </div>
+</div>
