@@ -5,7 +5,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
   providedIn: 'root'
 })
 export class GoogleGenAiService {
-  private apiKey = 'AIzaSyBXaoWP513YWgZvRmypDZsB0OUxQ86J9aA';
+  private apiKey = 'YOUR_API_KEY';
   private modelName: string = "gemini-1.5-flash";
 
   genAI: any = new GoogleGenerativeAI(this.apiKey);
