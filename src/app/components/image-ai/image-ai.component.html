@@ -3,25 +3,32 @@
         <div class="col-12 mb-3">
             <input type="text" class="form-control" placeholder="Enter the prompt" [(ngModel)]="prompt">
         </div>
-        <div class="col-12">
-            <div class="form-group">
-                <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*">
-            </div>
-        </div>
-    </div>
-
-    <!-- Image Preview -->
-    <div class="row justify-content-center mt-5">
-        <div class="col-12">
-            <div class="form-group">
+        
+        <div class="row justify-content-center mt-5">
+            <div class="col-12">
+              <div class="form-group text-center">
                 <img *ngIf="imageSrc" [src]="imageSrc" alt="Image Preview" class="w-75 d-block m-auto">
+
+                <div class="mt-3" (click)="fileInput.click()" *ngIf="!imageSrc">
+                    <img 
+                        src="https://i.ibb.co/K2ydrvF/upload.png" 
+                        alt="Select Image" 
+                        srcset="https://i.ibb.co/K2ydrvF/upload.png"
+                    />
+                    <p class="text-black-50">Select Image for GenAi Prompt</p>
+                </div>
+              </div>
+
+              <!-- Hidden file input -->
+              <input #fileInput type="file" accept="image/*" (change)="onFileSelected($event)" style="display:none">
             </div>
-        </div>
+          </div>
     </div>
 
     <div class="row my-5">
         <div class="col-12 text-center">
             <button class="btn btn-success btn-lg" (click)="generateUxAi()">Generate UX</button>
+            <button class="btn btn-warning btn-lg ms-3" (click)="changeImage()">Change</button>
         </div>
     </div>
 </div>

@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './image-ai.component.scss'
 })
 export class ImageAiComponent {
-  imageSrc: string | ArrayBuffer | null = 'https://i0.wp.com/sunrisedaycamp.org/wp-content/uploads/2020/10/placeholder.png';
+  imageSrc: string | ArrayBuffer | null = '';
   file: any;
   prompt: string = 'Generate the UX strategy from the image or sketch in details';
 
@@ -22,18 +22,16 @@ export class ImageAiComponent {
   ) {}
 
   onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
+    const fileInput = event.target as HTMLInputElement;
 
-    if (input.files && input.files[0]) {
-      const file: File = input.files[0];
-      this.file = file;
+    if (fileInput.files && fileInput.files[0]) {
       const reader = new FileReader();
 
-      reader.onload = (e) => {
-        this.imageSrc = reader.result;
+      reader.onload = (e: any) => {
+        this.imageSrc = e.target.result;
       };
 
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(fileInput.files[0]);
     }
 
     this.generateUxAi();
@@ -44,5 +42,9 @@ export class ImageAiComponent {
       let result = this.googleGenAi.generateUX(this.prompt, base64Img);
       console.log(result);
     });
+  }
+
+  changeImage() {
+    this.imageSrc = '';
   }
 }
