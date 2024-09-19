@@ -15,6 +15,6 @@ export class GoogleGenAiService {
 
   async generateUX(prompt: string, image: any) {
     const result = await this.model.generateContent([prompt, image]);
-    console.log(result.response.text());
+    return result.response.text();
   }
 }

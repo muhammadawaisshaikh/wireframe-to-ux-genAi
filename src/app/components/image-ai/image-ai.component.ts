@@ -41,7 +41,8 @@ export class ImageAiComponent {
 
   generateUxAi() {
     this.imageHelper.convertImageToBase64(this.file).then(base64Img => {
-      this.googleGenAi.generateUX(this.prompt, base64Img);
+      let result = this.googleGenAi.generateUX(this.prompt, base64Img);
+      console.log(result);
     });
   }
 }
