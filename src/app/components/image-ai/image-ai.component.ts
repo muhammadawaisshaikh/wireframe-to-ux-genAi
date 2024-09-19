@@ -22,18 +22,16 @@ export class ImageAiComponent {
   ) {}
 
   onFileSelected(event: Event): void {
-    const fileInput = event.target as HTMLInputElement;
-
-    if (fileInput.files && fileInput.files[0]) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file: File = input.files[0];
+      this.file = file;
       const reader = new FileReader();
-
-      reader.onload = (e: any) => {
-        this.imageSrc = e.target.result;
+      reader.onload = (e) => {
+        this.imageSrc = reader.result;
       };
-
-      reader.readAsDataURL(fileInput.files[0]);
+      reader.readAsDataURL(file);
     }
-
     this.generateUxAi();
   }
 
